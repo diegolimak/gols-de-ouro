@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚽ Gols de Ouro — Amor à Vida</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>⚽ GOLS DE OURO</h1>
+    <p class="subtitle">Amor à Vida · Gamificação Comercial · Copa 2025</p>
+    <div class="header-actions">
+      <a href="registro.html" class="btn-primary">📝 Registrar Ações</a>
+      <button onclick="exportarDados()" class="btn-secondary">💾 Exportar Dados</button>
+      <button onclick="limparDados()" class="btn-danger">🗑️ Nova Rodada</button>
+    </div>
+  </header>
+
+  <div class="tape">
+    <div class="tape-inner">
+      <span class="tape-item">Reunião Online — 3 pts</span>
+      <span class="tape-item">Reunião Presencial — 5 pts</span>
+      <span class="tape-item">Prospecção Vale Dobro</span>
+      <span class="tape-item">CRM Atualizado — 10 pts</span>
+      <span class="tape-item">Venda até 29 vidas — 10 pts</span>
+      <span class="tape-item">Venda 30–49 vidas — 15 pts</span>
+      <span class="tape-item">Venda 50+ vidas — 20 pts</span>
+      <span class="tape-item">Reunião Online — 3 pts</span>
+      <span class="tape-item">Reunião Presencial — 5 pts</span>
+      <span class="tape-item">Prospecção Vale Dobro</span>
+      <span class="tape-item">CRM Atualizado — 10 pts</span>
+      <span class="tape-item">Venda até 29 vidas — 10 pts</span>
+      <span class="tape-item">Venda 30–49 vidas — 15 pts</span>
+      <span class="tape-item">Venda 50+ vidas — 20 pts</span>
+    </div>
+  </div>
+
+  <div class="week-selector reveal">
+    <label>📅 Semana:</label>
+    <select id="weekSelector" onchange="carregarSemana()"></select>
+  </div>
+
+  <div class="divider"></div>
+
+  <section class="teams-score">
+    <div class="team team-thais reveal">
+      <h2>🔵 TIME THAÍS</h2>
+      <div class="team-points" id="pointsThais">0</div>
+      <p class="team-label">pontos</p>
+    </div>
+    <div class="team team-luiza reveal">
+      <h2>🔴 TIME LUIZA</h2>
+      <div class="team-points" id="pointsLuiza">0</div>
+      <p class="team-label">pontos</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="podium reveal">
+    <div class="podium-item second">
+      <div class="medal">🥈</div>
+      <div class="podium-name" id="second">—</div>
+      <div class="podium-points" id="secondPoints">0 pts</div>
+      <div id="secondTeam" class="podium-team-badge"></div>
+    </div>
+    <div class="podium-item first">
+      <div class="medal">🥇</div>
+      <div class="podium-name" id="first">—</div>
+      <div class="podium-points" id="firstPoints">0 pts</div>
+      <div id="firstTeam" class="podium-team-badge"></div>
+    </div>
+    <div class="podium-item third">
+      <div class="medal">🥉</div>
+      <div class="podium-name" id="third">—</div>
+      <div class="podium-points" id="thirdPoints">0 pts</div>
+      <div id="thirdTeam" class="podium-team-badge"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="highlights">
+    <div class="highlight-card reveal">
+      <div class="highlight-icon">⚽</div>
+      <div class="highlight-title">Artilheiro</div>
+      <div class="highlight-name" id="artilheiro">—</div>
+      <div class="highlight-value" id="artilheiroValue">0 vendas</div>
+    </div>
+    <div class="highlight-card reveal">
+      <div class="highlight-icon">🎯</div>
+      <div class="highlight-title">Assistente</div>
+      <div class="highlight-name" id="assistente">—</div>
+      <div class="highlight-value" id="assistenteValue">0 reuniões</div>
+    </div>
+    <div class="highlight-card reveal">
+      <div class="highlight-icon">📊</div>
+      <div class="highlight-title">CRM Perfeito</div>
+      <div class="highlight-name" id="crmPerfeito">—</div>
+      <div class="highlight-value" id="crmPerfeitoValue">—</div>
+    </div>
+    <div class="highlight-card reveal">
+      <div class="highlight-icon">👔</div>
+      <div class="highlight-title">Gerente Destaque</div>
+      <div class="highlight-name" id="gerenteDestaque">—</div>
+      <div class="highlight-value" id="gerenteValue">0 pts</div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="ranking reveal">
+    <h2>📊 Ranking Completo</h2>
+    <div class="ranking-filters">
+      <button class="filter-btn active" onclick="filtrarRanking('todos', this)">Todos</button>
+      <button class="filter-btn" onclick="filtrarRanking('thais', this)">🔵 Time Thaís</button>
+      <button class="filter-btn" onclick="filtrarRanking('luiza', this)">🔴 Time Luiza</button>
+    </div>
+    <div class="ranking-table-wrapper">
+      <table class="ranking-table">
+        <thead>
+          <tr>
+            <th>Pos.</th><th>Nome</th><th>Perfil</th><th>Time</th>
+            <th>Reuniões</th><th>Vendas</th><th>CRM</th>
+            <th class="points-col">Pts</th>
+          </tr>
+        </thead>
+        <tbody id="rankingBody">
+          <tr><td colspan="8">
+            <div class="empty-state"><span>📋</span>Nenhum registro para esta semana ainda</div>
+          </td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="stats reveal">
+    <h2>📈 Estatísticas da Semana</h2>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-number" id="totalReunioes">0</div><div class="stat-label">Reuniões Realizadas</div></div>
+      <div class="stat-card"><div class="stat-number" id="totalVendas">0</div><div class="stat-label">Vendas Fechadas</div></div>
+      <div class="stat-card"><div class="stat-number" id="totalVidas">0</div><div class="stat-label">Vidas Estimadas</div></div>
+      <div class="stat-card"><div class="stat-number" id="totalProspeccao">0</div><div class="stat-label">Prospecções Próprias</div></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-title">⚽ Gols de Ouro</div>
+    <p>Sistema de Gamificação Comercial · Amor à Vida</p>
+    <p style="margin-top:6px;font-size:0.8rem;opacity:0.4;">Cada ação é um passe. Cada venda é um gol.</p>
+  </footer>
+
+</div>
+<script src="app.js"></script>
+<script>
+  window.onload = function() {
+    inicializarSistema();
+    atualizarDashboard();
+  };
+</script>
+</body>
+</html>
