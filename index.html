@@ -3,133 +3,169 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>⚽ Gols de Ouro — Amor à Vida</title>
+  <title>Copa 2026 — Amor à Vida</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="container">
 
-  <header>
-    <h1>⚽ GOLS DE OURO</h1>
-    <p class="subtitle">Amor à Vida · Gamificação Comercial · Copa 2025</p>
-    <div class="header-actions">
-      <a href="registro.html" class="btn-primary">📝 Registrar Ações</a>
-      <button onclick="exportarDados()" class="btn-secondary">💾 Exportar Dados</button>
-      <button onclick="limparDados()" class="btn-danger">🗑️ Nova Rodada</button>
-    </div>
-  </header>
-
-  <div class="tape">
-    <div class="tape-inner">
-      <span class="tape-item">Reunião Online — 3 pts</span>
-      <span class="tape-item">Reunião Presencial — 5 pts</span>
-      <span class="tape-item">Prospecção Vale Dobro</span>
-      <span class="tape-item">CRM Atualizado — 10 pts</span>
-      <span class="tape-item">Venda até 29 vidas — 10 pts</span>
-      <span class="tape-item">Venda 30–49 vidas — 15 pts</span>
-      <span class="tape-item">Venda 50+ vidas — 20 pts</span>
-      <span class="tape-item">Reunião Online — 3 pts</span>
-      <span class="tape-item">Reunião Presencial — 5 pts</span>
-      <span class="tape-item">Prospecção Vale Dobro</span>
-      <span class="tape-item">CRM Atualizado — 10 pts</span>
-      <span class="tape-item">Venda até 29 vidas — 10 pts</span>
-      <span class="tape-item">Venda 30–49 vidas — 15 pts</span>
-      <span class="tape-item">Venda 50+ vidas — 20 pts</span>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">⚽ Amor à Vida · Gamificação Comercial</div>
+    <h1 class="hero-title">
+      <span class="gold">COPA</span>
+      <span class="year">2026</span>
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">Cada ação é um passe · Cada venda é um gol</p>
+    <div class="hero-actions" style="margin-top:1.5rem;">
+      <a href="registro.html" class="btn btn-gold">📝 Registrar Ações</a>
+      <button onclick="exportarDados()" class="btn btn-outline">💾 Exportar Dados</button>
+      <button onclick="limparDados()" class="btn btn-danger">🗑️ Nova Rodada</button>
     </div>
   </div>
 
-  <div class="week-selector reveal">
-    <label>📅 Semana:</label>
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span class="ticker-item">Reunião Online — 3 pts</span>
+      <span class="ticker-item">Reunião Presencial — 5 pts</span>
+      <span class="ticker-item">Prospecção Vale Dobro 🚀</span>
+      <span class="ticker-item">Foto com cliente marcando a corretora — 5 pts</span>
+      <span class="ticker-item">CRM Atualizado — 10 pts</span>
+      <span class="ticker-item">Venda até 29 vidas — 10 pts</span>
+      <span class="ticker-item">Venda 30–49 vidas — 15 pts</span>
+      <span class="ticker-item">Venda 50+ vidas — 20 pts</span>
+      <span class="ticker-item">Reunião Online — 3 pts</span>
+      <span class="ticker-item">Reunião Presencial — 5 pts</span>
+      <span class="ticker-item">Prospecção Vale Dobro 🚀</span>
+      <span class="ticker-item">Foto com cliente marcando a corretora — 5 pts</span>
+      <span class="ticker-item">CRM Atualizado — 10 pts</span>
+      <span class="ticker-item">Venda até 29 vidas — 10 pts</span>
+      <span class="ticker-item">Venda 30–49 vidas — 15 pts</span>
+      <span class="ticker-item">Venda 50+ vidas — 20 pts</span>
+    </div>
+  </div>
+
+  <!-- SEMANA -->
+  <div class="week-bar reveal">
+    <label>📅 Semana em exibição</label>
     <select id="weekSelector" onchange="carregarSemana()"></select>
   </div>
 
   <div class="divider"></div>
 
-  <section class="teams-score">
-    <div class="team team-thais reveal">
-      <h2>🔵 TIME THAÍS</h2>
-      <div class="team-points" id="pointsThais">0</div>
-      <p class="team-label">pontos</p>
+  <!-- SCOREBOARD -->
+  <section class="scoreboard reveal">
+    <div class="team-panel panel-thais" id="panelThais">
+      <h2 class="team-name">🔵 TIME THAÍS</h2>
+      <div class="team-pts-big" id="pointsThais">0</div>
+      <p class="pts-label">pontos</p>
     </div>
-    <div class="team team-luiza reveal">
-      <h2>🔴 TIME LUIZA</h2>
-      <div class="team-points" id="pointsLuiza">0</div>
-      <p class="team-label">pontos</p>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <section class="podium reveal">
-    <div class="podium-item second">
-      <div class="medal">🥈</div>
-      <div class="podium-name" id="second">—</div>
-      <div class="podium-points" id="secondPoints">0 pts</div>
-      <div id="secondTeam" class="podium-team-badge"></div>
-    </div>
-    <div class="podium-item first">
-      <div class="medal">🥇</div>
-      <div class="podium-name" id="first">—</div>
-      <div class="podium-points" id="firstPoints">0 pts</div>
-      <div id="firstTeam" class="podium-team-badge"></div>
-    </div>
-    <div class="podium-item third">
-      <div class="medal">🥉</div>
-      <div class="podium-name" id="third">—</div>
-      <div class="podium-points" id="thirdPoints">0 pts</div>
-      <div id="thirdTeam" class="podium-team-badge"></div>
+    <div class="vs-block">VS</div>
+    <div class="team-panel panel-luiza" id="panelLuiza">
+      <h2 class="team-name">🔴 TIME LUIZA</h2>
+      <div class="team-pts-big" id="pointsLuiza">0</div>
+      <p class="pts-label">pontos</p>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <section class="highlights">
-    <div class="highlight-card reveal">
-      <div class="highlight-icon">⚽</div>
-      <div class="highlight-title">Artilheiro</div>
-      <div class="highlight-name" id="artilheiro">—</div>
-      <div class="highlight-value" id="artilheiroValue">0 vendas</div>
+  <!-- PÓDIO -->
+  <section class="podium-section">
+    <div class="section-header reveal">
+      <div class="section-tag">Pódio da Semana</div>
+      <h2 class="section-title">Top <span class="accent">3</span></h2>
     </div>
-    <div class="highlight-card reveal">
-      <div class="highlight-icon">🎯</div>
-      <div class="highlight-title">Assistente</div>
-      <div class="highlight-name" id="assistente">—</div>
-      <div class="highlight-value" id="assistenteValue">0 reuniões</div>
-    </div>
-    <div class="highlight-card reveal">
-      <div class="highlight-icon">📊</div>
-      <div class="highlight-title">CRM Perfeito</div>
-      <div class="highlight-name" id="crmPerfeito">—</div>
-      <div class="highlight-value" id="crmPerfeitoValue">—</div>
-    </div>
-    <div class="highlight-card reveal">
-      <div class="highlight-icon">👔</div>
-      <div class="highlight-title">Gerente Destaque</div>
-      <div class="highlight-name" id="gerenteDestaque">—</div>
-      <div class="highlight-value" id="gerenteValue">0 pts</div>
+    <div class="podium reveal">
+      <div class="podium-card pos-2">
+        <div class="podium-medal">🥈</div>
+        <div class="podium-rank">2º lugar</div>
+        <div class="podium-name" id="second">—</div>
+        <div class="podium-pts" id="secondPoints">0 pts</div>
+        <div id="secondTeam" class="podium-team-tag"></div>
+      </div>
+      <div class="podium-card pos-1">
+        <div class="podium-medal">🥇</div>
+        <div class="podium-rank">1º lugar</div>
+        <div class="podium-name" id="first">—</div>
+        <div class="podium-pts" id="firstPoints">0 pts</div>
+        <div id="firstTeam" class="podium-team-tag"></div>
+      </div>
+      <div class="podium-card pos-3">
+        <div class="podium-medal">🥉</div>
+        <div class="podium-rank">3º lugar</div>
+        <div class="podium-name" id="third">—</div>
+        <div class="podium-pts" id="thirdPoints">0 pts</div>
+        <div id="thirdTeam" class="podium-team-tag"></div>
+      </div>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <section class="ranking reveal">
+  <!-- DESTAQUES -->
+  <section class="highlights-section">
+    <div class="section-header reveal">
+      <div class="section-tag">Prêmios Especiais</div>
+      <h2 class="section-title">Destaques da <span class="accent">Semana</span></h2>
+    </div>
+    <div class="highlights-grid">
+      <div class="hl-card reveal">
+        <div class="hl-icon">⚽</div>
+        <div class="hl-tag">Artilheiro</div>
+        <div class="hl-name" id="artilheiro">—</div>
+        <div class="hl-value" id="artilheiroValue">0 vendas</div>
+      </div>
+      <div class="hl-card reveal">
+        <div class="hl-icon">🎯</div>
+        <div class="hl-tag">Assistente</div>
+        <div class="hl-name" id="assistente">—</div>
+        <div class="hl-value" id="assistenteValue">0 reuniões</div>
+      </div>
+      <div class="hl-card reveal">
+        <div class="hl-icon">📸</div>
+        <div class="hl-tag">Influencer</div>
+        <div class="hl-name" id="influencer">—</div>
+        <div class="hl-value" id="influencerValue">—</div>
+      </div>
+      <div class="hl-card reveal">
+        <div class="hl-icon">📊</div>
+        <div class="hl-tag">CRM Perfeito</div>
+        <div class="hl-name" id="crmPerfeito">—</div>
+        <div class="hl-value" id="crmPerfeitoValue">—</div>
+      </div>
+      <div class="hl-card reveal">
+        <div class="hl-icon">👔</div>
+        <div class="hl-tag">Gerente Destaque</div>
+        <div class="hl-name" id="gerenteDestaque">—</div>
+        <div class="hl-value" id="gerenteValue">0 pts</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- RANKING -->
+  <section class="ranking-section reveal">
     <h2>📊 Ranking Completo</h2>
-    <div class="ranking-filters">
-      <button class="filter-btn active" onclick="filtrarRanking('todos', this)">Todos</button>
-      <button class="filter-btn" onclick="filtrarRanking('thais', this)">🔵 Time Thaís</button>
-      <button class="filter-btn" onclick="filtrarRanking('luiza', this)">🔴 Time Luiza</button>
+    <div class="rank-filters">
+      <button class="rf-btn active" onclick="filtrarRanking('todos',this)">Todos</button>
+      <button class="rf-btn" onclick="filtrarRanking('thais',this)">🔵 Time Thaís</button>
+      <button class="rf-btn" onclick="filtrarRanking('luiza',this)">🔴 Time Luiza</button>
     </div>
-    <div class="ranking-table-wrapper">
-      <table class="ranking-table">
+    <div class="table-wrap">
+      <table class="rank-table">
         <thead>
           <tr>
             <th>Pos.</th><th>Nome</th><th>Perfil</th><th>Time</th>
-            <th>Reuniões</th><th>Vendas</th><th>CRM</th>
-            <th class="points-col">Pts</th>
+            <th>Reuniões</th><th>Vendas</th><th>📸 Posts</th><th>CRM</th>
+            <th class="pts-col">Pts</th>
           </tr>
         </thead>
         <tbody id="rankingBody">
-          <tr><td colspan="8">
+          <tr><td colspan="9">
             <div class="empty-state"><span>📋</span>Nenhum registro para esta semana ainda</div>
           </td></tr>
         </tbody>
@@ -139,20 +175,125 @@
 
   <div class="divider"></div>
 
-  <section class="stats reveal">
-    <h2>📈 Estatísticas da Semana</h2>
+  <!-- ESTATÍSTICAS -->
+  <section class="stats-section">
+    <div class="section-header reveal">
+      <div class="section-tag">Números da Semana</div>
+      <h2 class="section-title">Estatísticas</h2>
+    </div>
     <div class="stats-grid">
-      <div class="stat-card"><div class="stat-number" id="totalReunioes">0</div><div class="stat-label">Reuniões Realizadas</div></div>
-      <div class="stat-card"><div class="stat-number" id="totalVendas">0</div><div class="stat-label">Vendas Fechadas</div></div>
-      <div class="stat-card"><div class="stat-number" id="totalVidas">0</div><div class="stat-label">Vidas Estimadas</div></div>
-      <div class="stat-card"><div class="stat-number" id="totalProspeccao">0</div><div class="stat-label">Prospecções Próprias</div></div>
+      <div class="stat-card reveal"><div class="stat-num" id="totalReunioes">0</div><div class="stat-label">Reuniões Realizadas</div></div>
+      <div class="stat-card reveal"><div class="stat-num" id="totalVendas">0</div><div class="stat-label">Vendas Fechadas</div></div>
+      <div class="stat-card reveal"><div class="stat-num" id="totalVidas">0</div><div class="stat-label">Vidas Estimadas</div></div>
+      <div class="stat-card reveal"><div class="stat-num" id="totalFotos">0</div><div class="stat-label">Posts com Marcação</div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PREMIAÇÃO MENSAL -->
+  <section class="awards-section">
+    <div class="section-header reveal">
+      <div class="section-tag">Premiação Mensal</div>
+      <h2 class="section-title">Hall of <span class="accent">Glória</span></h2>
+    </div>
+    <div class="awards-grid">
+
+      <div class="award-card gold reveal">
+        <div class="award-pos">1º lugar</div>
+        <div class="award-medal">🥇</div>
+        <div class="award-title">Campeão da Copa</div>
+        <div class="award-prize">Camisa Oficial Brasil<br>+ R$ 150 no Coco Bambu</div>
+        <div class="award-desc">Maior pontuação acumulada no mês. Você veste a camisa de quem chegou lá.</div>
+      </div>
+
+      <div class="award-card silver reveal">
+        <div class="award-pos">2º lugar</div>
+        <div class="award-medal">🥈</div>
+        <div class="award-title">Vice-Campeão</div>
+        <div class="award-prize silver-txt">Um Tênis à sua escolha</div>
+        <div class="award-desc">Segundo maior acumulado do mês. Tão perto do topo — corra mais no próximo mês.</div>
+      </div>
+
+      <div class="award-card bronze reveal">
+        <div class="award-pos">3º lugar</div>
+        <div class="award-medal">🥉</div>
+        <div class="award-title">Terceiro Lugar</div>
+        <div class="award-prize bronze-txt">Alexa Echo Dot</div>
+        <div class="award-desc">Terceiro no pódio mensal. Tecnologia para turbinar sua rotina fora do trabalho.</div>
+      </div>
+
+      <div class="award-card fourth reveal">
+        <div class="award-pos">4º lugar</div>
+        <div class="award-medal">🏅</div>
+        <div class="award-title">Quarto Classificado</div>
+        <div class="award-prize" style="color:#4ade80;">R$ 100 em vale-presente</div>
+        <div class="award-desc">Quem chega no quarto lugar vai embora com R$ 100 no bolso. Vale a caça.</div>
+      </div>
+
+      <div class="award-card manager reveal">
+        <div class="award-pos">Melhor Gerente</div>
+        <div class="award-medal">👔</div>
+        <div class="award-title">Gerente da Copa</div>
+        <div class="award-prize" style="color:#a78bfa;">Jantar para 2 pessoas</div>
+        <div class="award-desc">Gerente com maior pontuação acumulada no mês. Liderar também tem recompensa.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- TABELA DE PONTOS -->
+  <section class="pontos-section">
+    <div class="section-header reveal">
+      <div class="section-tag">Regulamento</div>
+      <h2 class="section-title">Tabela de <span class="accent">Pontos</span></h2>
+    </div>
+    <div class="pontos-grid">
+      <div class="ponto-card pc-azul reveal">
+        <div><span class="ponto-pts">3</span><span class="ponto-unit">pts</span></div>
+        <div class="ponto-nome">Reunião Online</div>
+        <div class="ponto-desc">Reunião online realizada e registrada. Vale dobro se for prospecção própria.</div>
+        <div class="ponto-tags"><span class="ptag">Closer</span><span class="ptag">Novato</span></div>
+      </div>
+      <div class="ponto-card pc-verde reveal">
+        <div><span class="ponto-pts">5</span><span class="ponto-unit">pts</span></div>
+        <div class="ponto-nome">Reunião Presencial</div>
+        <div class="ponto-desc">Reunião presencial com o cliente. Vale 10 pts se prospecção própria.</div>
+        <div class="ponto-tags"><span class="ptag">Closer</span><span class="ptag">Novato</span></div>
+      </div>
+      <div class="ponto-card pc-ouro reveal">
+        <div><span class="ponto-pts">5</span><span class="ponto-unit">pts</span></div>
+        <div class="ponto-nome">Foto Pós-venda</div>
+        <div class="ponto-desc">Tirou foto com o cliente após a venda, postou na própria rede social e marcou a corretora.</div>
+        <div class="ponto-tags"><span class="ptag">Closer</span><span class="ptag">Novato</span></div>
+      </div>
+      <div class="ponto-card pc-verde reveal">
+        <div><span class="ponto-pts">10</span><span class="ponto-unit">pts</span></div>
+        <div class="ponto-nome">CRM Atualizado</div>
+        <div class="ponto-desc">CRM 100% em dia na semana de registro.</div>
+        <div class="ponto-tags"><span class="ptag">Todos</span></div>
+      </div>
+      <div class="ponto-card pc-vermelho reveal">
+        <div><span class="ponto-pts">10–20</span></div>
+        <div class="ponto-nome">Venda Fechada</div>
+        <div class="ponto-desc">Até 29 vidas = 10 pts · 30–49 vidas = 15 pts · 50+ vidas = 20 pts.</div>
+        <div class="ponto-tags"><span class="ptag">Closer</span><span class="ptag">Novato</span></div>
+      </div>
+      <div class="ponto-card pc-roxo reveal">
+        <div><span class="ponto-pts">×2</span></div>
+        <div class="ponto-nome">Prospecção Própria</div>
+        <div class="ponto-desc">Você mesmo buscou o cliente sem depender do marketing. Todas as ações de reunião valem o dobro.</div>
+        <div class="ponto-tags"><span class="ptag">Closer</span><span class="ptag">Novato</span></div>
+      </div>
     </div>
   </section>
 
   <footer>
-    <div class="footer-title">⚽ Gols de Ouro</div>
-    <p>Sistema de Gamificação Comercial · Amor à Vida</p>
-    <p style="margin-top:6px;font-size:0.8rem;opacity:0.4;">Cada ação é um passe. Cada venda é um gol.</p>
+    <div class="footer-wordmark">COPA 2026 · AMOR À VIDA</div>
+    <p>Sistema de Gamificação Comercial</p>
+    <p style="margin-top:4px;font-size:0.75rem;opacity:0.3;">WE ARE 26</p>
   </footer>
 
 </div>
