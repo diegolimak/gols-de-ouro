@@ -3,44 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>📝 Registrar Ações — Gols de Ouro</title>
+  <title>Registrar Ações — Copa 2026</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="container">
 
-  <header>
-    <h1>📝 REGISTRAR AÇÕES</h1>
-    <p class="subtitle">Preencha suas atividades da semana</p>
-    <div class="header-actions">
-      <a href="index.html" class="btn-secondary">← Voltar ao Dashboard</a>
+  <div class="hero" style="min-height:180px; padding:2rem;">
+    <div class="hero-eyebrow">⚽ Registrar Ações da Semana</div>
+    <h1 class="hero-title" style="font-size:clamp(2rem,6vw,4rem);">
+      <span class="gold">COPA</span> <span class="year" style="font-size:clamp(3rem,8vw,6rem);">2026</span>
+    </h1>
+    <div class="hero-actions" style="margin-top:1rem;">
+      <a href="index.html" class="btn btn-outline">← Voltar ao Dashboard</a>
     </div>
-  </header>
+  </div>
 
-  <form id="registroForm" class="registro-form">
+  <form id="registroForm" class="form-page">
 
     <!-- INFO BÁSICA -->
     <div class="form-section reveal">
-      <h3>👤 Informações Básicas</h3>
+      <h3>👤 Identificação</h3>
       <div class="form-group">
-        <label>Nome *</label>
+        <label>Seu nome *</label>
         <select id="nome" required onchange="mostrarCampos()">
           <option value="">Selecione seu nome</option>
           <optgroup label="🔵 Time Thaís">
-            <option value="Rodrigo"      data-perfil="closer"    data-time="thais">Rodrigo</option>
-            <option value="Gisele"       data-perfil="closer"    data-time="thais">Gisele</option>
-            <option value="Thiago"       data-perfil="closer"    data-time="thais">Thiago</option>
-            <option value="Vitor Lorran" data-perfil="novato"    data-time="thais">Vitor Lorran</option>
+            <option value="Rodrigo"      data-perfil="closer"     data-time="thais">Rodrigo</option>
+            <option value="Gisele"       data-perfil="closer"     data-time="thais">Gisele</option>
+            <option value="Thiago"       data-perfil="closer"     data-time="thais">Thiago</option>
+            <option value="Vitor Lorran" data-perfil="novato"     data-time="thais">Vitor Lorran</option>
             <option value="Marjorie"     data-perfil="backoffice" data-time="thais">Marjorie</option>
-            <option value="Thaís"        data-perfil="gerente"   data-time="thais">Thaís (Gerente)</option>
+            <option value="Thaís"        data-perfil="gerente"    data-time="thais">Thaís (Gerente)</option>
           </optgroup>
           <optgroup label="🔴 Time Luiza">
-            <option value="Matheus"      data-perfil="closer"    data-time="luiza">Matheus</option>
-            <option value="Kaike"        data-perfil="novato"    data-time="luiza">Kaike</option>
-            <option value="Victo Matera" data-perfil="novato"    data-time="luiza">Victo Matera</option>
-            <option value="Gabriela"     data-perfil="sdr"       data-time="luiza">Gabriela</option>
+            <option value="Matheus"      data-perfil="closer"     data-time="luiza">Matheus</option>
+            <option value="Kaike"        data-perfil="novato"     data-time="luiza">Kaike</option>
+            <option value="Victo Matera" data-perfil="novato"     data-time="luiza">Victo Matera</option>
+            <option value="Gabriela"     data-perfil="sdr"        data-time="luiza">Gabriela</option>
             <option value="Bianca"       data-perfil="backoffice" data-time="luiza">Bianca</option>
-            <option value="Luiza"        data-perfil="gerente"   data-time="luiza">Luiza (Gerente)</option>
+            <option value="Luiza"        data-perfil="gerente"    data-time="luiza">Luiza (Gerente)</option>
           </optgroup>
         </select>
       </div>
@@ -65,8 +67,6 @@
           <small>5 pts cada</small>
         </div>
       </div>
-
-      <!-- Novato extra -->
       <div class="form-row" id="novato-fields" style="display:none;">
         <div class="form-group">
           <label>Contatos Qualificados</label>
@@ -79,8 +79,6 @@
           <small>5 pts cada</small>
         </div>
       </div>
-
-      <!-- Closer extra -->
       <div class="form-row" id="closer-fields" style="display:none;">
         <div class="form-group">
           <label>Pós-vendas Realizados</label>
@@ -93,18 +91,27 @@
           <small>5 pts cada</small>
         </div>
       </div>
-
-      <div class="checkbox-group">
-        <label class="checkbox-label">
+      <div style="margin-top:8px;">
+        <label class="cb-label">
           <input type="checkbox" id="crmAtualizado" onchange="calcularPontosPreview()">
-          CRM 100% Atualizado → +10 pts
+          CRM 100% atualizado esta semana → +10 pts
         </label>
       </div>
     </div>
 
-    <!-- PROSPECÇÃO PRÓPRIA -->
+    <!-- FOTO PÓS-VENDA (closer + novato) -->
+    <div id="fotoSection" class="form-section reveal" style="display:none;">
+      <h3>📸 Foto Pós-venda</h3>
+      <div class="form-group">
+        <label>Quantas fotos você postou com cliente marcando a corretora?</label>
+        <input type="number" id="fotosPost" min="0" value="0" oninput="calcularPontosPreview()">
+        <small>5 pts cada · Foto com cliente + post na sua rede + marcou @corretoraamoravida</small>
+      </div>
+    </div>
+
+    <!-- PROSPECÇÃO PRÓPRIA (closer + novato) -->
     <div id="prospeccaoSection" class="form-section reveal" style="display:none;">
-      <h3>🎯 Prospecção Própria <span style="color:var(--verde-claro);font-size:0.9rem;">(Vale Dobro!)</span></h3>
+      <h3>🚀 Prospecção Própria <span style="color:#4ade80;font-weight:400;font-size:0.85rem;">(Vale Dobro)</span></h3>
       <div class="form-row">
         <div class="form-group">
           <label>Reuniões Online (Prospecção)</label>
@@ -143,7 +150,7 @@
       </div>
     </div>
 
-    <!-- VENDAS -->
+    <!-- VENDAS (closer + novato) -->
     <div id="vendasSection" class="form-section reveal" style="display:none;">
       <h3>⚽ Vendas — O Gol!</h3>
       <div class="form-row">
@@ -219,107 +226,82 @@
     <!-- GERENTE -->
     <div id="gerenteSection" class="form-section reveal" style="display:none;">
       <h3>👔 Ações Gerente</h3>
-      <div class="checkbox-group">
-        <label class="checkbox-label">
-          <input type="checkbox" id="timeVenceu" onchange="calcularPontosPreview()">
-          Time Venceu a Semana → +10 pts
-        </label>
-      </div>
-      <div class="checkbox-group" style="margin-top:8px;">
-        <label class="checkbox-label">
-          <input type="checkbox" id="metaReunioes" onchange="calcularPontosPreview()">
-          Time Bateu Meta de Reuniões → +5 pts
-        </label>
-      </div>
-      <div class="checkbox-group" style="margin-top:8px;">
-        <label class="checkbox-label">
-          <input type="checkbox" id="crmOrganizado" onchange="calcularPontosPreview()">
-          Time com CRM 90%+ Organizado → +5 pts
-        </label>
-      </div>
-      <div class="checkbox-group" style="margin-top:8px;">
-        <label class="checkbox-label">
-          <input type="checkbox" id="melhorVendedor" onchange="calcularPontosPreview()">
-          Melhor Vendedor Geral Está no Time → +5 pts
-        </label>
-      </div>
+      <label class="cb-label"><input type="checkbox" id="timeVenceu" onchange="calcularPontosPreview()">Time Venceu a Semana → +10 pts</label>
+      <label class="cb-label"><input type="checkbox" id="metaReunioes" onchange="calcularPontosPreview()">Time Bateu Meta de Reuniões → +5 pts</label>
+      <label class="cb-label"><input type="checkbox" id="crmOrganizado" onchange="calcularPontosPreview()">Time com CRM 90%+ Organizado → +5 pts</label>
+      <label class="cb-label"><input type="checkbox" id="melhorVendedor" onchange="calcularPontosPreview()">Melhor Vendedor Geral Está no Time → +5 pts</label>
     </div>
 
-    <!-- PREVIEW DE PONTOS -->
-    <div class="points-preview reveal" id="pontosPreviewBox" style="display:none;">
-      <h3>⚽ Pontuação Estimada</h3>
-      <div class="points-total" id="pontosCalculados">0 pontos</div>
-      <p class="points-help">Calculado automaticamente conforme você preenche</p>
+    <!-- PREVIEW -->
+    <div class="pts-preview reveal" id="pontosPreviewBox" style="display:none;">
+      <div class="pts-preview-label">Pontuação Estimada</div>
+      <div class="pts-preview-num" id="pontosCalculados">0 pontos</div>
+      <div class="pts-preview-sub">Calculado automaticamente conforme você preenche</div>
     </div>
 
-    <button type="submit" class="btn-primary btn-large reveal" id="btnSalvar" style="display:none;">
+    <button type="submit" class="btn btn-gold btn-block reveal" id="btnSalvar" style="display:none;">
       ✅ SALVAR REGISTRO
     </button>
 
   </form>
 
   <footer>
-    <div class="footer-title">⚽ Gols de Ouro</div>
-    <p>Sistema de Gamificação Comercial · Amor à Vida</p>
+    <div class="footer-wordmark">COPA 2026 · AMOR À VIDA</div>
+    <p>Sistema de Gamificação Comercial</p>
   </footer>
 
 </div>
 <script src="app.js"></script>
 <script>
-  // Semana atual
-  (function() {
-    const hoje = new Date();
-    const ano  = hoje.getFullYear();
-    const sem  = String(Math.ceil((hoje - new Date(ano, 0, 1)) / 604800000)).padStart(2, '0');
-    document.getElementById('semana').value = `${ano}-W${sem}`;
+  // Set current week
+  (function(){
+    const hoje=new Date(),ano=hoje.getFullYear();
+    const sem=String(Math.ceil((hoje-new Date(ano,0,1))/604800000)).padStart(2,'0');
+    document.getElementById('semana').value=`${ano}-W${sem}`;
   })();
 
+  const SECOES = ['acoesComerciais','fotoSection','prospeccaoSection','vendasSection',
+                  'sdrSection','backofficeSection','gerenteSection',
+                  'novato-fields','closer-fields','novato-prosp-fields','closer-prosp-fields'];
+
   function mostrarCampos() {
-    const sel    = document.getElementById('nome');
-    const option = sel.options[sel.selectedIndex];
-    const perfil = option.dataset.perfil;
+    const sel=document.getElementById('nome');
+    const pf=sel.options[sel.selectedIndex].dataset.perfil;
+    SECOES.forEach(id=>{ const e=document.getElementById(id); if(e) e.style.display='none'; });
 
-    const ids = ['acoesComerciais','prospeccaoSection','vendasSection',
-                 'sdrSection','backofficeSection','gerenteSection',
-                 'novato-fields','closer-fields','novato-prosp-fields','closer-prosp-fields'];
-    ids.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.style.display = 'none';
-    });
-
-    if (!perfil) {
-      document.getElementById('pontosPreviewBox').style.display = 'none';
-      document.getElementById('btnSalvar').style.display = 'none';
+    if (!pf) {
+      document.getElementById('pontosPreviewBox').style.display='none';
+      document.getElementById('btnSalvar').style.display='none';
       return;
     }
 
-    if (perfil === 'closer' || perfil === 'novato') {
-      document.getElementById('acoesComerciais').style.display = 'block';
-      document.getElementById('prospeccaoSection').style.display = 'block';
-      document.getElementById('vendasSection').style.display = 'block';
-      if (perfil === 'novato') {
-        document.getElementById('novato-fields').style.display = 'flex';
-        document.getElementById('novato-prosp-fields').style.display = 'flex';
+    if (pf==='closer'||pf==='novato') {
+      document.getElementById('acoesComerciais').style.display='block';
+      document.getElementById('fotoSection').style.display='block';
+      document.getElementById('prospeccaoSection').style.display='block';
+      document.getElementById('vendasSection').style.display='block';
+      if (pf==='novato') {
+        document.getElementById('novato-fields').style.display='flex';
+        document.getElementById('novato-prosp-fields').style.display='flex';
       } else {
-        document.getElementById('closer-fields').style.display = 'flex';
-        document.getElementById('closer-prosp-fields').style.display = 'flex';
+        document.getElementById('closer-fields').style.display='flex';
+        document.getElementById('closer-prosp-fields').style.display='flex';
       }
-    } else if (perfil === 'sdr') {
-      document.getElementById('sdrSection').style.display = 'block';
-    } else if (perfil === 'backoffice') {
-      document.getElementById('backofficeSection').style.display = 'block';
-    } else if (perfil === 'gerente') {
-      document.getElementById('gerenteSection').style.display = 'block';
+    } else if (pf==='sdr') {
+      document.getElementById('sdrSection').style.display='block';
+    } else if (pf==='backoffice') {
+      document.getElementById('backofficeSection').style.display='block';
+    } else if (pf==='gerente') {
+      document.getElementById('gerenteSection').style.display='block';
     }
 
-    document.getElementById('pontosPreviewBox').style.display = 'block';
-    document.getElementById('btnSalvar').style.display = 'block';
+    document.getElementById('pontosPreviewBox').style.display='block';
+    document.getElementById('btnSalvar').style.display='block';
     calcularPontosPreview();
   }
 
-  document.getElementById('registroForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    salvarRegistro();
+  document.getElementById('registroForm').addEventListener('submit',function(e){
+    e.preventDefault(); salvarRegistro();
   });
 </script>
 </body>
